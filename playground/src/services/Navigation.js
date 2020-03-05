@@ -2,7 +2,7 @@ const get = require('lodash/get');
 const isString= require('lodash/isString');
 
 const { stack, component } = require('../commons/Layouts');
-const { Navigation } = require('react-native-navigation');
+const { Navigation, OptionsModalPresentationStyle } = require('react-native-navigation');
 
 const push = (selfOrCompId, screen, options) => Navigation.push(compId(selfOrCompId), isString(screen) ? component(screen, options) : screen);
 
@@ -15,7 +15,33 @@ const pushExternalComponent = (self, name, passProps) => Navigation.push(self.pr
 
 const pop = (selfOrCompId) => Navigation.pop(compId(selfOrCompId));
 
-const showModal = (screen, options) => Navigation.showModal(isString(screen) ? stack(component(screen, options)) : screen);
+const showModal = (screen, options) => {
+  Navigation.showModal({
+    stack:{
+      children: [
+        { component: { name: screen, passProps: {} }}
+      ],
+      options: {
+        modalPresentationStyle: OptionsModalPresentationStyle.fullScreen,
+        modal: {
+          swipeToDismiss: true,
+        }
+      }
+    }
+  });
+}
+const showModal2 = (screen, options) => {
+  Navigation.showModal({
+      component: { name: screen, passProps: {},
+      options: {
+        modalPresentationStyle: OptionsModalPresentationStyle.fullScreen,
+        modal: {
+          swipeToDismiss: true,
+        }
+      }
+    }
+  });
+}
 
 const dismissModal = (selfOrCompId) => Navigation.dismissModal(compId(selfOrCompId));
 
@@ -47,6 +73,7 @@ module.exports = {
   pop,
   popToRoot,
   showModal,
+  showModal2,
   dismissModal,
   dismissAllModals,
   showOverlay,

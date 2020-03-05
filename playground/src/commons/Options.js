@@ -10,17 +10,25 @@ const {
 const SHOW_DURATION = 230 * 3;
 
 const setDefaultOptions = () => Navigation.setDefaultOptions({
-  layout: {
-    componentBackgroundColor: Colors.background,
-    orientation: ['portrait'],
-    direction: 'locale'
+  topBar: {
+    background: { color: "#f00" },
+    title: {
+      color: "#fff",
+    },
   },
   bottomTabs: {
-    titleDisplayMode: 'alwaysShow'
+    backgroundColor: "#0f0"
   },
   bottomTab: {
-    selectedIconColor: Colors.primary,
-    selectedTextColor: Colors.primary
+    textColor: "#fff",
+    selectedTextColor: "#f00",
+    fontSize: 11,
+    iconColor: "#fff",
+    selectedIconColor: "#f00",
+  },
+  layout: {
+    orientation: ['portrait'],
+    componentBackgroundColor: 'white',
   },
   animations: {
     ...useSlideAnimation ?
@@ -29,7 +37,7 @@ const setDefaultOptions = () => Navigation.setDefaultOptions({
           slowOpenScreenAnimations :
           {}
   },
-  modalPresentationStyle: 'fullScreen'
+  // modalPresentationStyle: 'fullScreen'
 });
 
 const slideAnimations = {

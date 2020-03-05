@@ -34,26 +34,13 @@ class LayoutsScreen extends React.Component {
     );
   }
 
-  stack = () => Navigation.showModal(Screens.Stack);
+  stack = () => {
+    Navigation.showModal(Screens.Stack);
+  }
 
-  bottomTabs = () => Navigation.showModal({
-    bottomTabs: {
-      children: [
-        stack(Screens.FirstBottomTabsScreen),
-        stack({
-          component: {
-            name: Screens.SecondBottomTabsScreen
-          }
-        }, 'SecondTab'
-        )
-      ],
-      options: {
-        bottomTabs: {
-          testID: BOTTOM_TABS
-        }
-      }
-    }
-  });
+  bottomTabs = () => {
+    Navigation.showModal2(Screens.Stack);
+  }
 
   sideMenu = () => Navigation.showModal({
     sideMenu: {
